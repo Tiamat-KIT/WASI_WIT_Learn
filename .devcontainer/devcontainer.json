@@ -3,7 +3,9 @@
 {
 	"name": "Rust",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/rust:1-1-bullseye",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
 	"features": {
 		"devwasm.azurecr.io/dev-wasm/dev-wasm-feature/rust-wasi:0": {},
 		"devwasm.azurecr.io/dev-wasm/dev-wasm-feature/wasmtime-wasi:0": {},
@@ -13,7 +15,7 @@
 	},
 	"workspaceFolder": "/workspace",
 	"workspaceMount": "source=${localWorkspaceFolder}/workspace,target=/workspace,type=bind,consistency=cached",
-	"postStartCommand": "rustup target add wasm32-wasip1"
+	"postStartCommand": "rustup target add wasm32-wasip1 && cargo install cargo-component"
 
 
 	// Use 'mounts' to make the cargo cache persistent in a Docker Volume.
